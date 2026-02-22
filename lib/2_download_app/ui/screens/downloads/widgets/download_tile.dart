@@ -51,11 +51,16 @@ class DownloadTile extends StatelessWidget {
                       resource.name,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    if (status != DownloadStatus.notDownloaded)
+                    if (status == DownloadStatus.downloading)
                       Text(
                         '${(progress * 100).toStringAsFixed(1)} % completed - '
                         '${(progress * resource.size).toStringAsFixed(1)} of ${resource.size} MB',
                         style: const TextStyle(fontSize: 12, color: Colors.grey),
+                      )
+                    else if (status == DownloadStatus.downloaded)
+                      const Text(
+                        'Downloaded',
+                        style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
                   ],
                 ),
